@@ -1,0 +1,69 @@
+.selection {
+  height: -webkit-fill-available;
+  max-height: 100%;
+  width: 500px;
+  background: black;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+}
+
+.selection-header {
+  color: white;
+  align-self: flex-start;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  flex-wrap: nowrap;
+}
+
+.linkedin-container {
+  margin-top: 30px;
+  background: white;
+  width: 330px;
+  padding-bottom: 10px;
+}
+
+.linkedin-header {
+  align-self: flex-start;
+  justify-content: space-between;
+  padding: 10px;
+  padding-left: 5px;
+}
+
+.linkedin-name-container {
+  margin-left: 5px;
+}
+
+.linkedin-name {
+  align-self: flex-start;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.linkedin-title {
+  color: #00000099;
+  font-size: 12px;
+}
+
+.linkedin-avatar {
+  width: 40px;
+}
+
+.linkedin-icon {
+  width: 25px;
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+
+.linkedin-content-image {
+  max-width: -webkit-fill-available;
+  padding: 10px;
+}
+
+.linkedin-content-text {
+  align-self: flex-start;
+  padding: 7px;
+  font-size: 14px;
+}

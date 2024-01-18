@@ -1,0 +1,48 @@
+.navbar {
+  width: -webkit-fill-available;
+  justify-content: space-between;
+  align-self: flex-start;
+  justify-self: flex-start;
+  background: #181818;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.navbar-logo {
+  width: 180px;
+  cursor: pointer;
+}
+
+.reply-all-conatiner {
+  gap: 10px;
+  cursor: pointer;
+}
+
+.reply-all-button {
+  color: #fff;
+  text-align: center;
+  font-family: "Work-Sans";
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.reply-all-image {
+  width: 20px;
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .navbar-logo {
+    width: 150px;
+  }
+  .reply-all-button {
+    font-size: 15px;
+  }
+  .reply-all-image {
+    width: 15px;
+  }
+}

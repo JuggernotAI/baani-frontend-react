@@ -1,0 +1,42 @@
+.input-container {
+  flex-wrap: nowrap;
+  width: -webkit-fill-available;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  border: white 1px solid;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  gap: 10px;
+  vertical-align: middle;
+}
+
+.input-text {
+  width: -webkit-fill-available;
+  background: none;
+  border: none;
+  font-size: 17px;
+  color: white;
+  height: 17px;
+  max-height: 150px;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+.send-icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+.attachment-icon {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

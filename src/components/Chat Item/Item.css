@@ -1,0 +1,50 @@
+.chat-item {
+  gap: 15px;
+  flex-wrap: nowrap;
+  max-width: 85%;
+  position: relative;
+}
+
+.chat-item-avatar-container {
+  align-self: flex-start;
+}
+
+.chat-item-avatar {
+  width: 40px;
+}
+
+.chat-item-content {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  font-size: 17px;
+}
+
+.chat-item-content-image {
+  max-width: 50vw;
+  max-height: 50vh;
+  padding: 10px;
+  align-self: center;
+  justify-self: center;
+}
+
+.chat-item-checkbox-container {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0.8;
+  right: 0;
+  top: 0;
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 3px;
+  background: gray;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.chat-item-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Work-Sans";
+  src: url("./assets/fonts/WorkSans.ttf");
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #171717;
+  font-family: "Work-Sans";
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+.flex-item {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  margin: 0px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

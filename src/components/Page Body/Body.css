@@ -1,0 +1,7 @@
+.body {
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  align-items: flex-end;
+}

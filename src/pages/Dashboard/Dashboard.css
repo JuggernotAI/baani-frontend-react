@@ -1,0 +1,12 @@
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.dashboard-content {
+  gap: 30px;
+  padding-bottom: 50px;
+}
