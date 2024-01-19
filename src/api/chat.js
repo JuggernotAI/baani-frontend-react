@@ -2,12 +2,27 @@ import instance from "./init";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-export const getResponse = async (message) => {
+export const getInit = async () => {
+  return await instance
+    .get("/chat/init", {
+      headers: {
+        Authorization: `Bearer ${cookies.get("token")}`,
+      },
+    })
+    .then((response) => {
+      return response.data.messages[0];
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+export const getResponse = async (messages) => {
   return await instance
     .post(
-      "/generate",
+      "/chat/generate",
       {
-        prompt: message,
+        messages: messages,
       },
       {
         headers: {
@@ -38,7 +53,8 @@ export const postOnLinkedIn = async (message) => {
       }
     )
     .then((response) => {
-      return response.data;
+      console.log(response.data);
+      return response;
     })
     .catch((error) => {
       return error;

@@ -3,7 +3,9 @@ import Input from "../Chat Input/Input";
 import Log from "../Chat Log/Log";
 import Preview from "../Media Preview/Preview";
 import { useState } from "react";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies();
 const chatAPI = require("../../api/chat");
 
 export default function Chat(props) {
@@ -22,16 +24,50 @@ export default function Chat(props) {
     setTyping(true);
     setTextAnimation(true);
 
-    chatAPI.getResponse(message).then((response) => {
-      setLogs((prev) => [
-        ...prev,
+    if (cookies.get("init") === undefined) {
+      chatAPI.getInit().then((response) => {
+        cookies.set("init", response, { path: "/" });
+        const newLogs = [
+          response,
+          ...logs,
+          {
+            role: "user",
+            content: message,
+          },
+        ];
+
+        chatAPI.getResponse(newLogs).then((response) => {
+          setLogs((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: response.content,
+            },
+          ]);
+          setTyping(false);
+        });
+      });
+    } else {
+      const init = cookies.get("init");
+      const newLogs = [
+        init,
+        ...logs,
         {
-          role: "assistant",
-          content: response.content,
+          role: "user",
+          content: message,
         },
-      ]);
-      setTyping(false);
-    });
+      ];
+      chatAPI.getResponse(newLogs).then((response) => {
+        setLogs((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: response.content,
+          },
+        ]);
+        setTyping(false);
+      });
+    }
   }
 
   return (

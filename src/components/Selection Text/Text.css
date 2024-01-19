@@ -1,0 +1,50 @@
+.linkedin-content-text {
+  position: relative;
+}
+
+.linkedin-content-selection-action-cotainer {
+  padding: 5px;
+  width: -webkit-fill-available;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.selection-action-button {
+  cursor: pointer;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.linkedin-text-edit-container {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0.8;
+  right: 0;
+  top: 0;
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.linkedin-text-edit-button {
+  background: gray;
+  width: 20px;
+}
+
+.linkedin-content-edit {
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  width: 300px;
+  height: max-content;
+}

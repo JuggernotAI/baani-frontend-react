@@ -8,10 +8,22 @@ export default function Body() {
   const [checkedCount, setCheckedCount] = useState(0);
   const [textData, setTextData] = useState([]);
   const [imageData, setImageData] = useState([]);
+  const [selectionLoading, setSelectionLoading] = useState(false);
 
   function post_on_linkedin(content) {
+    setSelectionLoading(true);
     chatAPI.postOnLinkedIn(content).then((response) => {
-      console.log(response);
+      setSelectionLoading(false);
+      if (response.status === 200) {
+        setCheckedCount(0);
+        setTextData([]);
+        setImageData([]);
+        alert("The Content is Successfully Posted on LinkedIn!");
+        return true;
+      } else {
+        alert("Error: " + response.data.message);
+        return false;
+      }
     });
   }
 
@@ -26,7 +38,11 @@ export default function Body() {
         <Selection
           post={post_on_linkedin}
           textData={textData}
+          setTextData={setTextData}
+          setImageData={setImageData}
+          setCheckedCount={setCheckedCount}
           imageData={imageData}
+          loading={selectionLoading}
         />
       ) : null}
     </div>

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./Item.css";
 
 export default function Item(props) {
-  const [isChecked, setIsChecked] = useState(false);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -30,40 +29,9 @@ export default function Item(props) {
     } else setMessage(props.data.content);
   }, []);
 
-  function handleCheckboxChange() {
-    setIsChecked(!isChecked);
-    handleSelections();
-    props.setCheckedCount((prev) => {
-      if (isChecked) return prev - 1;
-      else return prev + 1;
-    });
-  }
-
-  function handleSelections() {
-    if (!isChecked) {
-      if (props.type === "text") {
-        // if props.data.content starts with [Final Content Twitter] or [Final Content LinkedIn], then remove the brackets and the text inside
-        if (props.data.content.startsWith("[Final Content")) {
-          const index = props.data.content.indexOf("]");
-          const content = props.data.content.substring(index + 1);
-          props.setTextData((prev) => [...prev, content]);
-        } else props.setTextData((prev) => [...prev, props.data.content]);
-      } else props.setImageData((prev) => [...prev, props.data.content]);
-    } else {
-      if (props.type === "text") {
-        if (props.data.content.startsWith("[Final Content")) {
-          const index = props.data.content.indexOf("]");
-          const content = props.data.content.substring(index + 1);
-          props.setTextData((prev) => prev.filter((item) => item !== content));
-        } else
-          props.setTextData((prev) =>
-            prev.filter((item) => item !== props.data.content)
-          );
-      } else
-        props.setImageData((prev) =>
-          prev.filter((item) => item !== props.data.content)
-        );
-    }
+  function addToSelection() {
+    props.setTextData((prev) => [...prev, props.data.content]);
+    props.setCheckedCount((prev) => prev + 1);
   }
 
   function handleOnEnterHover(event) {
@@ -79,7 +47,7 @@ export default function Item(props) {
     const checkbox_container = chat_item.querySelector(
       ".chat-item-checkbox-container"
     );
-    if (!isChecked) checkbox_container.style.visibility = "hidden";
+    checkbox_container.style.visibility = "hidden";
   }
 
   return (
@@ -113,10 +81,11 @@ export default function Item(props) {
         </section>
       </div>
       <div className="chat-item-checkbox-container flex-container-column">
-        <input
-          onInput={handleCheckboxChange}
-          type="checkbox"
-          className="chat-item-checkbox flex-item"
+        <img
+          onClick={addToSelection}
+          src="/images/right-arrow.png"
+          className="chat-item-right-arrow"
+          alt="arrow"
         />
       </div>
     </div>

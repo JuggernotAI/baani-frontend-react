@@ -2,7 +2,7 @@ import "./Actions.css";
 
 export default function Actions(props) {
   function post_on_linkedin() {
-    const content = props.textData.join("\n");
+    const content = props.textData.join("\n\n");
     props.post(content);
   }
 

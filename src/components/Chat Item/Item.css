@@ -48,3 +48,7 @@
   height: 20px;
   cursor: pointer;
 }
+
+.chat-item-right-arrow {
+  width: 20px;
+}
