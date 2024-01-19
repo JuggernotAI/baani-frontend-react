@@ -4,6 +4,8 @@ import Log from "../Chat Log/Log";
 import Preview from "../Media Preview/Preview";
 import { useState } from "react";
 
+const chatAPI = require("../../api/chat");
+
 export default function Chat(props) {
   const [imagePreviewData, setImagePreviewData] = useState([]);
   const [logs, setLogs] = useState([
@@ -19,16 +21,17 @@ export default function Chat(props) {
   function sendMessage(message) {
     setTyping(true);
     setTextAnimation(true);
-    setTimeout(() => {
+
+    chatAPI.getResponse(message).then((response) => {
       setLogs((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: message,
+          content: response.content,
         },
       ]);
       setTyping(false);
-    }, 2000);
+    });
   }
 
   return (

@@ -41,15 +41,25 @@ export default function Item(props) {
 
   function handleSelections() {
     if (!isChecked) {
-      if (props.type === "text")
-        props.setTextData((prev) => [...prev, props.data.content]);
-      else props.setImageData((prev) => [...prev, props.data.content]);
+      if (props.type === "text") {
+        // if props.data.content starts with [Final Content Twitter] or [Final Content LinkedIn], then remove the brackets and the text inside
+        if (props.data.content.startsWith("[Final Content")) {
+          const index = props.data.content.indexOf("]");
+          const content = props.data.content.substring(index + 1);
+          props.setTextData((prev) => [...prev, content]);
+        } else props.setTextData((prev) => [...prev, props.data.content]);
+      } else props.setImageData((prev) => [...prev, props.data.content]);
     } else {
-      if (props.type === "text")
-        props.setTextData((prev) =>
-          prev.filter((item) => item !== props.data.content)
-        );
-      else
+      if (props.type === "text") {
+        if (props.data.content.startsWith("[Final Content")) {
+          const index = props.data.content.indexOf("]");
+          const content = props.data.content.substring(index + 1);
+          props.setTextData((prev) => prev.filter((item) => item !== content));
+        } else
+          props.setTextData((prev) =>
+            prev.filter((item) => item !== props.data.content)
+          );
+      } else
         props.setImageData((prev) =>
           prev.filter((item) => item !== props.data.content)
         );

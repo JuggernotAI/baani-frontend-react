@@ -1,3 +1,4 @@
+import Actions from "../Actions Bar/Actions";
 import "./Selection.css";
 
 export default function Selection(props) {
@@ -41,6 +42,7 @@ export default function Selection(props) {
           ))}
         </div>
       </div>
+      <Actions post={props.post} />
     </div>
   );
 }
