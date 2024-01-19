@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Text.css";
 
 export default function Text(props) {
   const [isEdit, setEdit] = useState(false);
   const [text, setText] = useState(props.item);
+
+  function resizeEdit() {
+    const elements = document.getElementsByClassName("linkedin-content-edit");
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.height = "auto";
+      elements[i].style.height = elements[i].scrollHeight + "px";
+    }
+  }
 
   function handleEditClick(event) {
     setEdit(!isEdit);
@@ -42,18 +50,14 @@ export default function Text(props) {
     edit_container.style.visibility = "hidden";
   }
 
-  function resizeEdit() {
-    const elements = document.getElementsByClassName("linkedin-content-edit");
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].style.height = "auto";
-      elements[i].style.height = elements[i].scrollHeight + "px";
-    }
-  }
-
   function handleEdit(e) {
     setText(e.target.value);
     resizeEdit();
   }
+
+  useEffect(() => {
+    resizeEdit();
+  }, [text, isEdit]);
 
   return (
     <div
