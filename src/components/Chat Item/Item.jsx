@@ -20,7 +20,7 @@ export default function Item(props) {
         }
       };
 
-      const intervalId = setInterval(animateMessage, 37);
+      const intervalId = setInterval(animateMessage, 25);
 
       return () => {
         clearInterval(intervalId);
@@ -70,7 +70,7 @@ export default function Item(props) {
       <div className="chat-item-content-container flex-container-column">
         <section className="chat-item-content flex-item flex-container-column">
           {props.type === "text" ? (
-            <div>{message}</div>
+            <div className="item-text-content">{message}</div>
           ) : (
             <img
               className="chat-item-content-image"

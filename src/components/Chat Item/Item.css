@@ -52,3 +52,7 @@
 .chat-item-right-arrow {
   width: 20px;
 }
+
+.item-text-content {
+  white-space: pre-line;
+}

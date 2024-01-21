@@ -83,7 +83,7 @@ export default function Text(props) {
           </div>
         </div>
       ) : (
-        <p>{props.item}</p>
+        <p className="markdown-text">{props.item}</p>
       )}
       <div className="linkedin-text-edit-container flex-container-row">
         <img
