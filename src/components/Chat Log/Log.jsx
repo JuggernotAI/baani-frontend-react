@@ -9,7 +9,6 @@ export default function Log(props) {
         {props.logs.map((log, index) => (
           <Item
             key={index}
-            type="text"
             data={log}
             length={props.logs.length}
             setCheckedCount={props.setCheckedCount}

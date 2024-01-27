@@ -8,6 +8,8 @@ export default function Item(props) {
     let index = 0;
     const messageLength = props.data.content.length;
 
+    console.log("type", props.data.type);
+
     if (
       props.data.role === "assistant" &&
       props.animation
@@ -69,7 +71,7 @@ export default function Item(props) {
       </div>
       <div className="chat-item-content-container flex-container-column">
         <section className="chat-item-content flex-item flex-container-column">
-          {props.type === "text" ? (
+          {props.data.type === "text" ? (
             <div className="item-text-content">{message}</div>
           ) : (
             <img

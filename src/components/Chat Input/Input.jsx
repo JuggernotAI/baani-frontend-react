@@ -51,6 +51,7 @@ export default function Input(props) {
         {
           role: "user",
           content: message,
+          type: "text",
         },
       ]);
       setMessage("");

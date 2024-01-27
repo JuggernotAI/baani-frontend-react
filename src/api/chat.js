@@ -2,6 +2,17 @@ import instance from "./init";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
+// remove type field from list of jsons
+export const removeType = (jsons) => {
+  const newJsons = [];
+  jsons.forEach((json) => {
+    const newJson = { ...json };
+    delete newJson.type;
+    newJsons.push(newJson);
+  });
+  return newJsons;
+};
+
 export const getInit = async () => {
   return await instance
     .get("/chat/init", {
@@ -22,7 +33,7 @@ export const getResponse = async (messages) => {
     .post(
       "/chat/generate",
       {
-        messages: messages,
+        messages: removeType(messages),
       },
       {
         headers: {

@@ -14,11 +14,27 @@ export default function Chat(props) {
     {
       role: "assistant",
       content: "Hello, I'm Juggernot. How can I help you today?",
+      type: "text",
     },
   ]);
   const [textAnimation, setTextAnimation] = useState(true);
   const [typing, setTyping] = useState(false);
   const [disableSend, setDisableSend] = useState(true);
+
+  function formatMessage(originalMessage) {
+    var urlPattern = /\((https?:\/\/\S+?)\)/g;
+    var urls = originalMessage.match(urlPattern);
+    let imagesData = [];
+    if (urls) {
+      urls.forEach(function (url) {
+        imagesData.push(url.slice(1, -1));
+      });
+    } else {
+      imagesData = null;
+    }
+    const text = originalMessage.replace(urlPattern, "");
+    return { text, images: imagesData };
+  }
 
   function sendMessage(message) {
     setTyping(true);
@@ -33,17 +49,28 @@ export default function Chat(props) {
           {
             role: "user",
             content: message,
+            type: "text",
           },
         ];
 
         chatAPI.getResponse(newLogs).then((response) => {
-          setLogs((prev) => [
-            ...prev,
-            {
-              role: "assistant",
-              content: response.content,
-            },
-          ]);
+          const formattedResponse = formatMessage(response.content);
+          let addLogs = [];
+          if (formattedResponse.images !== null) {
+            formattedResponse.images.forEach((image) => {
+              addLogs.push({
+                role: "assistant",
+                content: image,
+                type: "image",
+              });
+            });
+          }
+          addLogs.push({
+            role: "assistant",
+            content: formattedResponse.text,
+            type: "text",
+          });
+          setLogs((prev) => [...prev, ...addLogs]);
           setTyping(false);
         });
       });
@@ -55,16 +82,27 @@ export default function Chat(props) {
         {
           role: "user",
           content: message,
+          type: "text",
         },
       ];
       chatAPI.getResponse(newLogs).then((response) => {
-        setLogs((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: response.content,
-          },
-        ]);
+        const formattedResponse = formatMessage(response.content);
+        let addLogs = [];
+        if (formattedResponse.images !== null) {
+          formattedResponse.images.forEach((image) => {
+            addLogs.push({
+              role: "assistant",
+              content: image,
+              type: "image",
+            });
+          });
+        }
+        addLogs.push({
+          role: "assistant",
+          content: formattedResponse.text,
+          type: "text",
+        });
+        setLogs((prev) => [...prev, ...addLogs]);
         setTyping(false);
       });
     }
