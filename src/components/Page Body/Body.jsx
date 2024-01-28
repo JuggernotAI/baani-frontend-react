@@ -12,19 +12,34 @@ export default function Body() {
 
   function post_on_linkedin(content) {
     setSelectionLoading(true);
-    chatAPI.postOnLinkedIn(content).then((response) => {
-      setSelectionLoading(false);
-      if (response.status === 200) {
-        setCheckedCount(0);
-        setTextData([]);
-        setImageData([]);
-        alert("The Content is Successfully Posted on LinkedIn!");
-        return true;
-      } else {
-        alert("Error: " + response.data.message);
-        return false;
-      }
-    });
+    if (imageData.length === 0)
+      chatAPI.postOnLinkedIn(content, null).then((response) => {
+        setSelectionLoading(false);
+        if (response.status === 200) {
+          setCheckedCount(0);
+          setTextData([]);
+          setImageData([]);
+          alert("The Content is Successfully Posted on LinkedIn!");
+          return true;
+        } else {
+          alert("Error: " + response.data.message);
+          return false;
+        }
+      });
+    else
+      chatAPI.postOnLinkedIn(content, imageData[0]).then((response) => {
+        setSelectionLoading(false);
+        if (response.status === 200) {
+          setCheckedCount(0);
+          setTextData([]);
+          setImageData([]);
+          alert("The Content is Successfully Posted on LinkedIn!");
+          return true;
+        } else {
+          alert("Error: " + response.data.message);
+          return false;
+        }
+      });
   }
 
   return (

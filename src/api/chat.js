@@ -1,6 +1,8 @@
 import instance from "./init";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+const axios = require("axios");
+const FormData = require("form-data");
 
 // remove type field from list of jsons
 export const removeType = (jsons) => {
@@ -50,19 +52,26 @@ export const getResponse = async (messages) => {
     });
 };
 
-export const postOnLinkedIn = async (message) => {
+export const postOnLinkedIn = async (message, imageLink) => {
+  let body;
+
+  if (imageLink === null) {
+    body = {
+      content: message,
+    };
+  } else {
+    body = {
+      content: message,
+      image: imageLink,
+    };
+  }
+
   return await instance
-    .post(
-      "/post_linkedin",
-      {
-        content: message,
+    .post("/post_linkedin", body, {
+      headers: {
+        Authorization: `Bearer ${cookies.get("token")}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${cookies.get("token")}`,
-        },
-      }
-    )
+    })
     .then((response) => {
       console.log(response.data);
       return response;

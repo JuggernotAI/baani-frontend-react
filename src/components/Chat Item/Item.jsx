@@ -32,7 +32,9 @@ export default function Item(props) {
   }, []);
 
   function addToSelection() {
-    props.setTextData((prev) => [...prev, props.data.content]);
+    if (props.data.type === "text")
+      props.setTextData((prev) => [...prev, props.data.content]);
+    else props.setImageData((prev) => [...prev, props.data.content]);
     props.setCheckedCount((prev) => prev + 1);
   }
 
