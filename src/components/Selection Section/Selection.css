@@ -70,8 +70,10 @@
   align-self: flex-start;
 }
 
-.linkedin-content-image {
+.linkedin-content-image,
+.linkedin-content-images {
   max-width: -webkit-fill-available;
+  position: relative;
   padding: 10px;
 }
 

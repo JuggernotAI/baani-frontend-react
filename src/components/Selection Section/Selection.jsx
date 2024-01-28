@@ -1,6 +1,7 @@
 import Actions from "../Actions Bar/Actions";
 import Text from "../Selection Text/Text";
 import "./Selection.css";
+import Image from "../Selection Image/Image";
 
 export default function Selection(props) {
   return !props.loading ? (
@@ -29,11 +30,12 @@ export default function Selection(props) {
         </div>
         <div className="linkedin-content flex-container-column">
           {props.imageData.map((item, index) => (
-            <img
+            <Image
+              setCheckedCount={props.setCheckedCount}
+              setImageData={props.setImageData}
               key={index}
-              className="linkedin-content-image flex-item"
-              src={item}
-              alt="linkedin-content"
+              index={index}
+              item={item}
             />
           ))}
           {props.textData.map((item, index) => (
