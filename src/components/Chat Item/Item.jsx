@@ -22,7 +22,7 @@ export default function Item(props) {
         }
       };
 
-      const intervalId = setInterval(animateMessage, 25);
+      const intervalId = setInterval(animateMessage, 13);
 
       return () => {
         clearInterval(intervalId);
